@@ -1,6 +1,7 @@
 package com.pyf.guideview.guide
 
 import android.content.SharedPreferences
+import utils.CommonPref
 
 /**
  * Created by PYF on 2018/9/1
@@ -8,21 +9,26 @@ import android.content.SharedPreferences
 
 class DefaultOnce (var mKey: String) : Guide.LifeCallback, Guide.Intercept {
     var mHasShow: Boolean = false
-    lateinit var mLifeCallback: Guide.LifeCallback
+    var mLifeCallback: Guide.LifeCallback? = null
 
     override fun shouldIntercept(key: String): Boolean {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
         if (mHasShow) {
             return true
         }
-        mHasShow =
+        mHasShow = CommonPref.getInstance(null).getBoolean(mKey, false)
+        return mHasShow
     }
 
     override fun onShow() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        CommonPref.getInstance(null).putBoolean(mKey, true)
+        mLifeCallback?.run {
+            onShow()
+        }
     }
 
     override fun onDismiss() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        mLifeCallback?.run {
+            onDismiss()
+        }
     }
 }

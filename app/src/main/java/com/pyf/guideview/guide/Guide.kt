@@ -27,7 +27,7 @@ interface Guide {
 
     fun show()
 
-    fun hide()
+    fun dismiss()
 
     interface GuideBuilder {
         fun getView(inflater: LayoutInflater): View

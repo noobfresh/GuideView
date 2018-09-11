@@ -18,7 +18,7 @@ open class SharedPreferencedUtils(var mPref: SharedPreferences) {
     @JvmField
     val DELEMITER: String = ","
 
-    val listener = View.OnClickListener {
+    val listener = View.OnClickListener {_ ->
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
         Log.i(TAGTWO, "AAAAAAAAAAAAAAAAAAAAAAA")
     }
@@ -156,7 +156,6 @@ open class SharedPreferencedUtils(var mPref: SharedPreferences) {
                 return
             }
         }
-
         val result = "".buildWithDelimiter(values, DELEMITER)
         put(key, result)
     }
@@ -181,5 +180,10 @@ open class SharedPreferencedUtils(var mPref: SharedPreferences) {
             }
         }
         return mPref.contains(key)
+    }
+
+    fun test() {
+        val sum = { x: Int, y:Int -> x + y}
+        run {Log.i(TAG, "lambda")}
     }
 }
